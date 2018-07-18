@@ -28,6 +28,7 @@ public class Main {
 	static int mapRows = 25, mapCols = 25;
 	static String[][] map = new String[mapRows][mapCols];
 	static int playerRow = 5, playerCol = 5;
+	static int questNumber = 0;
 	public static void main(String args[]) {
 	
 			//Town.test();
@@ -77,7 +78,7 @@ public class Main {
 	public static boolean monsterBattle(boolean flee) {
 		if(flee == false) {
 			System.out.println("Enemy Approaches, His Stats Are: \nHealth: " + monsterHp + "\nDefense: " + monsterDf);
-		
+			
 		}
 		
 		while (playerHp > 0 && monsterHp > 0) {
@@ -86,6 +87,7 @@ public class Main {
 			Scanner scBattleChoice = new Scanner(System.in);
 			int choice = scBattleChoice.nextInt();
 			if(choice == 1) {
+				
 				monsterDamage = rand(monsterAttackMin, monsterAttackMax);
 				playerDamage =  rand(attackMin, attackMax);
 				monsterHp -= playerDamage * attackMultiplier;
@@ -206,7 +208,7 @@ public class Main {
 		map[rand(0, mapRows)][rand(0, mapCols)] = "# "; map[rand(0, mapRows)][rand(0, mapCols)] = "# "; map[rand(0, mapRows)][rand(0, mapCols)] = "# "; map[rand(0, mapRows)][rand(0, mapCols)] = "# ";
 		map[rand(0, mapRows)][rand(0, mapCols)] = "% "; map[rand(0, mapRows)][rand(0, mapCols)] = "% "; 
 		map[rand(0, mapRows)][rand(0, mapCols)] = "$ ";
-		map[rand(0, mapRows)][rand(0, mapCols)] = "? ";map[rand(0, mapRows)][rand(0, mapCols)] = "? ";
+		map[rand(0, mapRows)][rand(0, mapCols)] = "? ";
 	
 	}
 	public static void mapPrint() {
@@ -264,6 +266,9 @@ public class Main {
 					monsterBattle(false);
 				}
 			}
+			else if(map[playerRow - 1][playerCol].equals("? ")) {
+				mapQuest(questNumber);
+			}
 		}
 		else if(area.equals("East")) {
 			if(map[playerRow][playerCol - 1].equals("% ")) {
@@ -279,6 +284,9 @@ public class Main {
 				if(rand(1, 4) == 1) {
 					monsterBattle(false);
 				}
+			}
+			else if(map[playerRow - 1][playerCol].equals("? ")) {
+				mapQuest(questNumber);
 			}
 		}
 		else if(area.equals("South")) {
@@ -296,6 +304,9 @@ public class Main {
 					monsterBattle(false);
 				}
 			}
+			else if(map[playerRow - 1][playerCol].equals("? ")) {
+				mapQuest(questNumber);
+			}
 		}
 		else if(area.equals("West")) {
 			if(map[playerRow][playerCol + 1].equals("% ")) {
@@ -312,10 +323,16 @@ public class Main {
 					monsterBattle(false);
 				}
 			}
+			else if(map[playerRow - 1][playerCol].equals("? ")) {
+				mapQuest(questNumber);
+			}
 		}
 			
 	}
 	public static void mapBoss() {
+		
+	}
+	public static void mapQuest(int questNumber) {
 		
 	}
 	public static void town() {
