@@ -29,8 +29,8 @@ static int mapRows = 11, mapCols = 11;
 static String[][] map = new String[mapRows][mapCols];
 static int playerRow = 5, playerCol = 5;
 public static void main(String args[]) {
-		
-		Town.test();
+		//CHANGED
+		//Town.test();
 		mapInitialize();
 		
 		//monsterBattle(false);
